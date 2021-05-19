@@ -1,0 +1,59 @@
+from dojo_ninjas_app.models import Dojo, Ninja
+
+CREATE:
+Dojo.objects.create(name="Coding Dojo", city="Dallas", state="TX")
+Dojo.objects.create(name="2nd Place Dojo", city="Denver", state="CO")
+Dojo.objects.create(name="Sunny Dojo", city="San Diego", state="CA")
+
+
+DELETE:
+s = Dojo.objects.get(id=1)
+s.delete()
+t = Dojo.objects.get(id=2)
+t.delete()
+u = Dojo.objects.get(id=3)
+u.delete()
+
+CREATE:
+Dojo.objects.create(name="Coding Dojo", city="Dallas", state="TX")
+Dojo.objects.create(name="2nd Place Dojo", city="Denver", state="CO")
+Dojo.objects.create(name="Sunny Dojo", city="San Diego", state="CA")
+
+
+CREATE:
+Ninja.objects.create(dojo=Dojo.objects.get(id=5), first_name="Harry", last_name="Potter")
+Ninja.objects.create(dojo=Dojo.objects.get(id=5), first_name="Hermione", last_name="Granger")
+Ninja.objects.create(dojo=Dojo.objects.get(id=5), first_name="Ron", last_name="Weasley")
+
+
+CREATE:
+Ninja.objects.create(dojo=Dojo.objects.get(id=4), first_name="Luke", last_name="Skywalker")
+Ninja.objects.create(dojo=Dojo.objects.get(id=4), first_name="Han", last_name="Solo")
+Ninja.objects.create(dojo=Dojo.objects.get(id=4), first_name="Leah", last_name="Skywalker")
+
+CREATE:
+Ninja.objects.create(dojo=Dojo.objects.get(id=3), first_name="Vin", last_name="Mistborn")
+Ninja.objects.create(dojo=Dojo.objects.get(id=3), first_name="Clubs", last_name="Smoker")
+Ninja.objects.create(dojo=Dojo.objects.get(id=3), first_name="Ham", last_name="Thug")
+
+
+GET (LIST):
+for ninja in Ninja.objects.all():
+    print(ninja.first_name, ninja.dojo.name)
+
+GET (LIST - SPECIFIC DOJO):
+Ninja.objects.filter(dojo=Dojo.objects.get(id=1))
+
+GET (LIST - NINJAS FROM LAST DOJO):
+Ninja.objects.filter(dojo=Dojo.objects.last())
+
+GET (LAST NINJA'S DOJO):
+Ninja.objects.last().dojo.name
+
+python manage.py makemigrations
+1
+"badass training grounds"
+python manage.py migrate
+
+CREATE:
+Dojo.objects.create(name="New Dojo on the Block", city="Chicago", state="IL", desc="Newest dojo around")
